@@ -1,0 +1,689 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+#home-page {
+
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+    background-image: url('photos/background.png');
+    background-size: cover; 
+    background-position: center;
+}
+
+/* Style for the text inside the banner */
+
+.banner-text {
+    color: white; 
+    text-align: center; 
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+/* Heading style */
+
+.banner-text h1 {
+    margin: 0; 
+    padding: 0;
+    font-size: 100px; 
+}
+
+/* Style for the logo underneath the banner text */
+
+.banner-logo {
+    position: absolute;
+    top: 60%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+.banner-logo img {
+    max-width: 200px; 
+    height: auto; 
+}
+
+/* Styles for the top navigation bar */
+
+.top-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgb(212, 212, 212); 
+    z-index: 1000; 
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-evenly; 
+    align-items: center;
+    padding: 10px 0; 
+}
+
+.nav-container a {
+    color: rgb(0, 0, 0); 
+    text-decoration: none; 
+    font-size: 16px; 
+    padding: 5px 10px; 
+}
+
+.nav-container a:hover {
+    background-color: #d4d0d0; 
+}
+
+.nav-logo {
+    max-height: 50px; 
+    width: auto; 
+    flex-shrink: 0; 
+    margin-right: 20px; 
+    margin-left: -100px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*about us*/
+
+#about{
+    width: 100%;
+    padding: 70px 0;
+    background: #001936; 
+    text-align: center; 
+}
+
+.about-row{
+width: 90%;
+margin: auto;
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+flex-wrap: wrap;
+gap: 15px
+}
+
+.about-col{
+flex: 28%;
+padding: 50px;
+margin-bottom: 30px;
+border-radius: 5px;
+box-shadow: 0 10px 25px 3px #ffffff;
+cursor: pointer;
+transition: transform .5s;
+background-color: #d4d0d0 ;
+}
+
+.about-col p{
+font-size: 20px;
+}
+
+.about-col:hover{
+transform: translateY(-9px)
+}
+
+.title-text {
+text-align: center;
+width: 80%; 
+margin: auto;
+}
+
+.title-text p {
+margin: auto;
+font-size: 20px;
+color: #d4d0d0;
+font-weight: bold;
+position: relative;
+z-index: 1;
+display: inline-block;
+}
+
+.title-text h5 {
+font-size: 55px;
+color: #146da8 ;
+margin-bottom: 20px; 
+}
+
+.title-text h1{
+font-size: 80px;
+}
+
+.during-box {
+display: flex;
+justify-content: space-between;
+align-items: center;
+text-align: left; 
+margin: auto; 
+width: 90%; 
+}
+
+.during-blog{
+font-size: 25px;
+padding-left: 0%; 
+padding-right: 0%;
+justify-content: left;
+}
+
+.about-col{
+    flex: 28%;
+    padding: 50px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    box-shadow: 0 10px 25px 3px #ffffff;
+    cursor: pointer;
+    transition: transform .5s;
+    background-color: #ffffff;
+}
+
+/*last image column*/
+
+.about-row .about-col:last-child {
+    background-image: url('photos/workingonlaptop.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    height: 380px; 
+}
+
+.about-row .about-col:last-child:hover {
+    transform: translateY(-9px);
+}
+
+/*projects section*/
+#projects {
+    padding: 70px 0;
+    background: #001936; /* Light background to keep it fresh and modern */
+    text-align: center;
+}
+
+.section-title {
+    font-size: 60px;
+    color: #107eb1; /* Matching the professional theme */
+    margin-bottom: 50px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+    align-items: stretch;
+}
+
+.project-item {
+    background: rgb(255, 255, 255);
+    box-shadow: 0 8px 16px rgb(255, 255, 255)255, 0.1;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Ensures images cover the area well */
+}
+
+.project-info {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-info h3 {
+    font-size: 24px;
+    color: #333;
+}
+
+.project-info p {
+    flex: 1;
+    color: #666;
+}
+
+.project-link {
+    align-self: start;
+    padding: 10px 15px;
+    background-color: #1c6f96; /* Adds a pop of color */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.project-link:hover {
+    background-color: #0f3b50;
+}
+.container {
+    width: calc(100% - 40px); /* Subtracting 40px total from the width for padding */
+    max-width: 1200px; /* You can adjust this value based on your preference */
+    margin: auto; /* This centers the container */ /* 20px padding on each side */
+}
+
+/* Enhanced responsiveness for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        width: calc(100% - 20px); /* Reduce the total subtracted width for smaller screens */
+        padding: 0 10px; /* Reduce padding on smaller screens */
+    }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+    .container {
+        width: calc(100% - 10px); /* Even less subtraction for very small screens */
+        padding: 0 5px; /* Minimal padding for very small screens to maximize space */
+    }
+}
+
+/* Gallery Section Styling */
+
+.gallery-section {
+    padding: 50px 0;
+    background: #001936;
+    text-align: center;
+}
+
+.gallery-section h2 {
+    font-size: 36px; /* Larger font size */
+    color: #fff; /* White color for better visibility on dark background */
+    margin-bottom: 50px; /* Increased bottom margin to create space from the images */
+    font-weight: bold; /* Making the font bold for better emphasis */
+}
+
+.gallery-container {
+    width: calc(100% - 40px);
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    position:relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.image-caption {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-item:hover .image-caption {
+    transform: translateY(-100%);
+}
+#project2-gallery .gallery-grid {
+    grid-template-columns: repeat(2, 1fr); /* Creates 2 columns when there are more than 2 images */
+}
+
+.gallery-item {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.image-caption {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-item:hover .image-caption {
+    transform: translateY(-100%);
+}
+
+/* Additional styling for gallery titles */
+.gallery-section h2 {
+    font-size: 36px; /* Larger font size */
+    color: #fff; /* White color for better visibility on dark background */
+    margin-bottom: 50px; /* Increased bottom margin to create space from the images */
+    font-weight: bold; /* Making the font bold for better emphasis */
+}
+
+
+/*portfolio*/
+#portfolio {
+    width: 100%;
+    padding: 70px 0;
+    background: #001936; 
+    text-align: center; 
+}
+
+.title-text {
+    text-align: center;
+    width: 80%; 
+    margin: 0 auto 50px; /* Add some bottom margin */
+}
+
+.title-text p {
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: normal;
+}
+
+.title-text h1 {
+    font-size: 55px;
+    color: #107eb1;
+    margin-bottom: 20px; 
+}
+
+.portfolio-box {
+    display: flex;
+    justify-content: space-around; /* Changed to space-around for better spacing */
+    align-items: center; /* Ensures vertical alignment */
+    flex-wrap: wrap; /* Allows wrapping */
+    margin: 0 auto;
+    max-width: 1200px; /* Limiting the maximum width */
+}
+
+.portfolio {
+    flex: 1 1 50%; /* Flex grow, flex shrink, flex basis */
+    max-width: 60%; /* Adjust based on preference */
+    padding: 20px;
+}
+
+.portfolio-text p {
+    color: #f0f0f0;
+    font-size: 18px;
+    line-height: 1.6; /* Improved line spacing for better readability */
+    text-align: justify; /* Justify the text for better alignment */
+    margin-bottom: 20px; /* Adds bottom margin */
+}
+
+.portfolio-img {
+    flex: 1 1 40%; /* Flex grow, flex shrink, flex basis */
+    max-width: 40%; /* Adjust based on preference */
+    text-align: center; /* Center the images within the container */
+}
+
+.portfolio-img img {
+    width: 100%;
+    max-width: 400px; /* Adjusted for better control */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3); /* Adding shadow for depth */
+}
+
+
+/*follow us*/
+
+#FOLLOW-ME {
+    padding: 100px 0 20px;
+    background: #001936;
+    text-align: center;
+}
+
+.social-links {
+    display: inline-block; 
+}
+
+.social-icon {
+    text-decoration: none; 
+    color: white; 
+    margin: 0 15px; 
+    display: inline-block; 
+    background: transparent; 
+    border-radius: 50%; 
+    padding: 20px; 
+    transition: all 0.3s ease; 
+    position: relative; 
+    overflow: hidden; 
+}
+
+.social-icon i {
+    transition: transform 0.6s ease; 
+    font-size: 80px; 
+    transition: transform 0.5s ease; 
+
+}
+
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: #1c6f96; 
+    z-index: 0;
+    transition: transform 0.3s ease; 
+}
+
+.social-icon:hover::before {
+    transform: translate(-50%, -50%) scale(1.2); 
+}
+
+.social-icon:hover i {
+    color: #fff; 
+    transform: rotate(360deg); 
+    z-index: 1; 
+}
+
+/*smaller screens*/
+
+@media screen and (max-width: 768px) {
+    body, html {
+        padding: 0 10px; /* Slight padding on smaller screens */
+    }
+
+    .nav-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .banner-text h1 {
+        font-size: 50px; /* Smaller font size for the banner text */
+    }
+
+    .title-text h1, .title-text h5, .section-title {
+        font-size: 30px; /* Adjust title sizes in various sections */
+    }
+
+    .about-row, .portfolio-box {
+        flex-direction: column; /* Stack columns vertically on smaller screens */
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr; /* Single column layout for projects */
+    }
+
+    .content-wrapper, .content-wrapper2 {
+        flex-direction: column; /* Stack content vertically in project sections */
+        align-items: center; /* Center-align the content */
+        text-align: center; /* Center text for smaller screens */
+    }
+
+    .image-content, .image-content2 {
+        order: -1; /* Move images above text content */
+    }
+
+    .text-content, .text-content2, .image-content, .image-content2 {
+        padding: 10px 0; /* Adjust padding for spacing */
+        flex-basis: auto; /* Allow flex items to adjust naturally */
+    }
+
+    .social-icon i {
+        font-size: 40px; /* Smaller icons in the social links section */
+    }
+    
+    .portfolio-container {
+        display: flex; /* Use flexbox to center children */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically if needed */
+    }
+    
+    .portfolio-img img {
+        margin: auto; /* Center the image within the flex container */
+        max-width: 100%; /* Ensure the image is not larger than the container */
+        height: 100%; /* Maintain aspect ratio */
+    }
+    
+    
+}
+
+@media screen and (max-width: 480px) {
+    .banner-text h1 {
+        font-size: 40px; /* Even smaller font size for ultra-small screens */
+    }
+    .title-text h1, .title-text h5, .section-title {
+        font-size: 25px; /* Further reduce title sizes */
+    }
+
+    .about-col, .portfolio, .portfolio-img img, .project-item, .text-content, .text-content2 {
+        width: 100%; /* Ensure these elements use the full width available */
+    }
+
+    .social-icon {
+        padding: 15px; /* Smaller padding around social icons */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nav-container {
+        flex-wrap: wrap; /* Allows items to wrap onto multiple lines */
+        padding: 10px 5px; /* Adjust padding as needed */
+    }
+
+    .nav-logo {
+        margin-right: 10px; /* Adjust for smaller screen */
+        margin-left: 0;
+        width: auto; /* Or you can set a max-width */
+        height: auto; /* Adjust the size as necessary */
+    }
+
+    .nav-container a {
+        padding: 5px; /* Reduced padding */
+        font-size: 14px; /* Smaller font size */
+        margin: 2px; /* Adjust spacing around links */
+    }
+}
+
+#waveCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Ensure this doesn't overlap important elements */
+}
+
+/* Sophisticated Button for PlanktoSpace Gallery */
+.sophisticated-btn {
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: transparent;
+    color: #107eb1;
+    border: 2px solid #107eb1;
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.sophisticated-btn:hover {
+    background-color: #107eb1;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(16, 126, 177, 0.4);
+    transform: translateY(-3px);
+}
+/* PlanktoSpace Split Gallery Layout */
+.app-split-container {
+    display: flex;
+    align-items: center; /* Centers items vertically */
+    justify-content: space-between;
+    gap: 50px;
+    margin-top: 40px;
+    text-align: left; /* Makes text look cleaner on the right */
+}
+
+.app-split-image {
+    flex: 1;
+    max-width: 500px;
+}
+
+.app-split-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border: 1px solid rgba(16, 126, 177, 0.3);
+}
+
+.app-split-info {
+    flex: 1.2;
+}
+
+.app-split-info p {
+    color: #cbd5e0;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-weight: 300;
+}
+
+.app-button-wrapper {
+    margin-top: 35px;
+}
+
+/* Responsive adjustment: Stack them on top of each other on mobile */
+@media screen and (max-width: 992px) {
+    .app-split-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .app-split-image {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+}
