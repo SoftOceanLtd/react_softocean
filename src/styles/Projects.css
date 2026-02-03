@@ -1,0 +1,62 @@
+#projects {
+    padding: 70px 0;
+    background: #001936;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 60px;
+    color: #107eb1;
+    margin-bottom: 50px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+}
+
+.project-item {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-link {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #1c6f96;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.sophisticated-btn {
+    display: inline-block;
+    padding: 15px 35px;
+    border: 2px solid #107eb1;
+    color: #107eb1;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.sophisticated-btn:hover {
+    background: #107eb1;
+    color: white;
+}
+
+/* Gallery Parts */
+.gallery-section { padding: 50px 0; background: #001936; color: white; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+.gallery-item { position: relative; overflow: hidden; border-radius: 8px; cursor: pointer; }
+.gallery-item img { width: 100%; transition: 0.3s; }
+.gallery-item:hover img { transform: scale(1.1); }

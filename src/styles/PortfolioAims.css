@@ -1,0 +1,27 @@
+#portfolio {
+    width: 100%;
+    padding: 70px 0;
+    background: #001936; 
+    text-align: center; 
+}
+
+.portfolio-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.portfolio-text p {
+    color: #f0f0f0;
+    font-size: 18px;
+    text-align: justify;
+}
+
+.portfolio-img img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+}

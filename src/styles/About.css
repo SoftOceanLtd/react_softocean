@@ -1,0 +1,57 @@
+#about {
+    width: 100%;
+    padding: 70px 0;
+    background: #001936; 
+    text-align: center; 
+}
+
+.about-row {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.about-col {
+    flex: 28%;
+    padding: 50px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    box-shadow: 0 10px 25px 3px #ffffff;
+    cursor: pointer;
+    transition: transform .5s;
+    background-color: #ffffff;
+}
+
+.about-col p { font-size: 20px; color: #333; }
+
+.about-col:hover { transform: translateY(-9px); }
+
+.about-row .about-col:last-child {
+    background-image: url('/photos/workingonlaptop.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    height: 380px; 
+}
+
+.title-text {
+    text-align: center;
+    width: 80%; 
+    margin: auto;
+}
+
+.title-text p {
+    font-size: 20px;
+    color: #d4d0d0;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.title-text h5 {
+    font-size: 55px;
+    color: #146da8;
+    margin-bottom: 20px; 
+}
