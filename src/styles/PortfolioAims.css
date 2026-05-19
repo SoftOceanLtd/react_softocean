@@ -1,27 +1,56 @@
 #portfolio {
-    width: 100%;
-    padding: 70px 0;
-    background: #001936; 
-    text-align: center; 
+  padding: 100px 0;
+  background-color: #01050a; /* Slightly darker to separate sections */
 }
 
-.portfolio-box {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: auto;
+.aims-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
 }
 
-.portfolio-text p {
-    color: #f0f0f0;
-    font-size: 18px;
-    text-align: justify;
+.aims-content {
+  flex: 1;
 }
 
-.portfolio-img img {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 10px;
+.aims-description {
+  font-size: 22px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  border-left: 4px solid var(--primary-cyan);
+  padding-left: 20px;
+}
+
+.aims-image {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.glow-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: var(--primary-blue);
+  filter: blur(100px);
+  opacity: 0.2;
+  z-index: 0;
+}
+
+.aims-image img {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 20px;
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--glass-border);
+}
+
+@media screen and (max-width: 768px) {
+  .aims-container { flex-direction: column; }
 }

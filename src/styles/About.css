@@ -1,57 +1,69 @@
 #about {
-    width: 100%;
-    padding: 70px 0;
-    background: #001936; 
-    text-align: center; 
+  padding: 100px 0;
+  background-color: var(--bg-dark);
 }
 
-.about-row {
-    width: 90%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 15px;
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
 }
 
-.about-col {
-    flex: 28%;
-    padding: 50px;
-    margin-bottom: 30px;
-    border-radius: 5px;
-    box-shadow: 0 10px 25px 3px #ffffff;
-    cursor: pointer;
-    transition: transform .5s;
-    background-color: #ffffff;
+.about-card {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 40px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.about-col p { font-size: 20px; color: #333; }
-
-.about-col:hover { transform: translateY(-9px); }
-
-.about-row .about-col:last-child {
-    background-image: url('/photos/workingonlaptop.jpg'); 
-    background-size: cover; 
-    background-position: center; 
-    height: 380px; 
+.about-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(0, 242, 254, 0.3);
 }
 
-.title-text {
-    text-align: center;
-    width: 80%; 
-    margin: auto;
+.icon-wrapper {
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 242, 254, 0.1);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--primary-cyan);
+  margin-bottom: 24px;
 }
 
-.title-text p {
-    font-size: 20px;
-    color: #d4d0d0;
-    font-weight: bold;
-    display: inline-block;
+.about-card h3 {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: var(--text-main);
 }
 
-.title-text h5 {
-    font-size: 55px;
-    color: #146da8;
-    margin-bottom: 20px; 
+.about-card p {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.image-card {
+  padding: 0;
+  background-image: url('/photos/workingonlaptop.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(transparent, rgba(2, 8, 19, 0.9));
+  padding: 30px;
 }

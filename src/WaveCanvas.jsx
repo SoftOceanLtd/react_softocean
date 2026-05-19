@@ -6,35 +6,38 @@ const WaveCanvas = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    
+    const setSize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    setSize();
 
     let wave = {
-      y: canvas.height * 0.8,
+      y: canvas.height * 0.75,
       length: 0.01,
       amplitude: 100,
-      frequency: 0.01
+      frequency: 0.015
     };
 
     let increment = wave.frequency;
 
     const handleMouseMove = (e) => {
       const relativeYPosition = e.clientY / window.innerHeight;
-      wave.amplitude = relativeYPosition * 100 + 50;
+      wave.amplitude = relativeYPosition * 120 + 30;
     };
 
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      wave.y = canvas.height * 0.8;
-    };
-
+    window.addEventListener('resize', () => {
+      setSize();
+      wave.y = canvas.height * 0.75;
+    });
     document.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('resize', handleResize);
 
     const animate = () => {
       requestAnimationFrame(animate);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(2, 8, 19, 0.1)'; // Creates a trailing blur effect
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
       ctx.beginPath();
       ctx.moveTo(0, wave.y);
 
@@ -42,8 +45,9 @@ const WaveCanvas = () => {
         ctx.lineTo(i, wave.y + Math.sin(i * wave.length + increment) * wave.amplitude * Math.sin(increment));
       }
 
-      ctx.strokeStyle = 'rgb(212, 212, 212)';
-      ctx.lineWidth = 3;
+      // Sleek glowing line
+      ctx.strokeStyle = 'rgba(79, 172, 254, 0.8)';
+      ctx.lineWidth = 2;
       ctx.stroke();
       increment += wave.frequency;
     };
@@ -52,7 +56,7 @@ const WaveCanvas = () => {
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', setSize);
     };
   }, []);
 

@@ -1,10 +1,18 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
+
+// Importing exactly from the components folder you specified
+import PlanktoSpaceManual from './components/PlanktoSpaceManual'; 
+
 import './index.css';
 
 function App() {
   return (
-    <MainPage />
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/planktospace-manual" element={<PlanktoSpaceManual />} />
+    </Routes>
   );
 }
 

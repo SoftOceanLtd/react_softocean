@@ -4,14 +4,17 @@ import '../styles/Hero.css';
 
 const Hero = () => {
   return (
-    <section id="home-page" style={{ position: 'relative' }}>
-      <div className="banner-text">
-        <h1>SoftOcean Ltd</h1>
-      </div>
-      <div className="banner-logo">
-        <img src="photos/soft_ocean_final.png" alt="logo" />
-      </div>
+    <section id="home-page" className="hero-section">
       <WaveCanvas />
+      <div className="hero-content">
+        <h1 className="hero-title">
+          Navigating the <br/> <span className="text-gradient">Digital Deep.</span>
+        </h1>
+        <p className="hero-subtitle">
+          SoftOcean Ltd is a premier IT consultancy delivering strategic digital solutions, specialized design, and transformative technology.
+        </p>
+        <a href="#about" className="hero-btn">Discover Our Expertise</a>
+      </div>
     </section>
   );
 };
