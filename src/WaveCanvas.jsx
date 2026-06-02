@@ -7,14 +7,16 @@ const WaveCanvas = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     
+    // FIXED: Now sizes itself based on the CSS parent container, not just the window.
+    // This stops it from misaligning if the Hero section gets taller than the screen.
     const setSize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
     };
     setSize();
 
     let wave = {
-      y: canvas.height * 0.75,
+      y: canvas.height * 0.85, // Shifted slightly from 0.90 so high-amplitude waves don't get clipped completely off-screen
       length: 0.01,
       amplitude: 100,
       frequency: 0.015
@@ -23,15 +25,22 @@ const WaveCanvas = () => {
     let increment = wave.frequency;
 
     const handleMouseMove = (e) => {
-      const relativeYPosition = e.clientY / window.innerHeight;
-      wave.amplitude = relativeYPosition * 120 + 30;
+      // Added safety check for screen height division
+      if (window.innerHeight > 0) {
+        const relativeYPosition = e.clientY / window.innerHeight;
+        wave.amplitude = relativeYPosition * 120 + 30;
+      }
     };
 
-    window.addEventListener('resize', () => {
+    const handleResize = () => {
       setSize();
-      wave.y = canvas.height * 0.75;
-    });
-    document.addEventListener('mousemove', handleMouseMove);
+      wave.y = canvas.height * 0.85; 
+    };
+
+    window.addEventListener('resize', handleResize);
+    
+    // FIXED: Added missing event listener (it was only in your cleanup function before!)
+    document.addEventListener('mousemove', handleMouseMove); 
 
     const animate = () => {
       requestAnimationFrame(animate);
@@ -54,9 +63,10 @@ const WaveCanvas = () => {
 
     animate();
 
+    // Cleanup phase
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', setSize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 

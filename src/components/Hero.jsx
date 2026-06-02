@@ -3,6 +3,16 @@ import WaveCanvas from '../WaveCanvas';
 import '../styles/Hero.css';
 
 const Hero = () => {
+
+  // Safely scroll without breaking HashRouter
+  const scrollToAbout = (e) => {
+    e.preventDefault();
+    const element = document.getElementById('about');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="home-page" className="hero-section">
       <WaveCanvas />
@@ -13,7 +23,7 @@ const Hero = () => {
         <p className="hero-subtitle">
           SoftOcean Ltd is a premier IT consultancy delivering strategic digital solutions, specialized design, and transformative technology.
         </p>
-        <a href="#about" className="hero-btn">Discover Our Expertise</a>
+        <a href="/" onClick={scrollToAbout} className="hero-btn">Discover Our Expertise</a>
       </div>
     </section>
   );

@@ -1,77 +1,41 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // 1. Import useNavigate
 import '../styles/Projects.css';
 
 const Projects = () => {
-  const navigate = useNavigate(); // 2. Initialize the navigate function
 
-  // This is still used for your static external HTML maps
-  const handleInteractiveClick = (url) => {
-    window.location.href = url;
+  // Safely redirect to external/static HTML files outside of React Router
+  const handleExternalHTML = (file) => {
+    window.location.href = file; 
+  };
+
+  // Carousel scroll handler
+  const scrollCarousel = (direction) => {
+    const track = document.getElementById('carousel-track');
+    if (track) {
+      const scrollAmount = window.innerWidth > 768 ? 350 : 280;
+      track.scrollBy({ left: direction === 'next' ? scrollAmount : -scrollAmount, behavior: 'smooth' });
+    }
   };
 
   return (
     <section id="projects">
-      {/* 1. Singular Boxes */}
-      <div className="container">
-        <div className="title-text center-title">
-          <p>Our Portfolio</p>
-          <h2>Notable Projects & Core Solutions</h2>
-        </div>
-
-        <div className="projects-grid">
-          {[
-            { img: 'photos/Screenshot 2024-05-29 124455.png', title: 'EMI Creation', desc: 'Portable electromagnetic induction instrument.', link: '#project1-gallery' },
-            { img: 'photos/ToneKP_2_1_zoom.png', title: 'Sylt Data Analysis', desc: 'Examination of electromagnetic signals for cable integrity.', link: '#project2-gallery' },
-            { img: 'photos/2024-05-13_19-33.png', title: 'Geophysical Surveys', desc: 'Understanding geological properties without invasive digging.', link: '#project3-gallery' },
-            { img: 'photos/imagefiller2.png', title: 'PlanktoSpace App', desc: 'Innovative mobile application for satellite overpass tracking.', link: '#planktospace-showcase' }
-          ].map((proj, idx) => (
-            <div className="project-card" key={idx}>
-              <img src={proj.img} alt={proj.title} className="project-img" />
-              <div className="project-content">
-                <h3>{proj.title}</h3>
-                <p>{proj.desc}</p>
-                <a href={proj.link} className="project-link">View Details <i className="fa-solid fa-arrow-right"></i></a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* 2. Interactive Gallery Section */}
-      <div id="project3-gallery" className="container split-section">
-        <div className="split-text">
-          <h2 className="text-gradient">Interactive Surveys</h2>
-          <p>Click on the maps to access our interactive data visualization portals for Geophysical surveying.</p>
-        </div>
-        <div className="interactive-grid">
-          <div className="interactive-item" onClick={() => handleInteractiveClick('GeomaresSylt.html')}>
-            <img src="photos/2024-05-13_19-35.png" alt="Survey 1" />
-            <div className="hover-indicator">Interact</div>
-          </div>
-          <div className="interactive-item" onClick={() => handleInteractiveClick('vis_path_amp.html')}>
-            <img src="photos/2024-05-13_19-36.png" alt="Survey 2" />
-            <div className="hover-indicator">Interact</div>
-          </div>
-        </div>
-      </div>
-
-      {/* 3. NEW LARGER PRESENTATION: PlanktoSpace Flagship Showcase */}
+      
+      {/* 1. PlanktoSpace Flagship Showcase */}
       <div id="planktospace-showcase" className="container flagship-showcase">
         <div className="flagship-header">
-          <span className="highlight-badge">Flagship Innovation</span>
+          <span className="highlight-badge">Innovation</span>
           <h2>The PlanktoSpace App</h2>
         </div>
 
         <div className="split-section reverse flagship-body">
           <div className="split-image flagship-image">
             <div className="glow-backdrop"></div>
-            <img src="photos/imagefiller2.png" alt="PlanktoSpace App Display" />
+            <img src="photos/welcome-screen.png" alt="PlanktoSpace App Display" />
           </div>
           <div className="split-text flagship-text">
             <h3>Transforming Satellite Overpass Tracking</h3>
             <p>
-              Representing one of our most significant technological milestones, the PlanktoSpace App is a premier mobile solution designed for researchers and enthusiasts. It delivers high-precision tracking and real-time analytics directly to your device.
+              Representing one of our most significant technological milestones, the PlanktoSpace App is a premier mobile solution designed for researchers and enthusiasts.
             </p>
             
             <ul className="flagship-features">
@@ -82,17 +46,66 @@ const Projects = () => {
 
             <div className="flagship-actions">
               
-              {/* 3. FIXED BUTTON: Using React Router's `navigate` instead of `window.location.href` */}
-              <button className="modern-btn" onClick={() => navigate('/planktospace-manual')}>
+              <button className="modern-btn" onClick={() => handleExternalHTML('planktospace-indepth.html')}>
                 View User Manual
               </button>
               
-              <a href="planktospace-legal.html" className="modern-btn outline-btn">App Support & Legal</a>
-              <button className="modern-btn outline-btn" onClick={() => handleInteractiveClick('#')}>Download App</button>
+              <button className="modern-btn outline-btn" onClick={() => handleExternalHTML('planktospace-legal.html')}>App Support & Legal</button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* 2. Interactive Gallery Section */}
+      <div id="project3-gallery" className="container split-section">
+        <div className="split-text">
+          <h2 className="text-gradient">Interactive Surveys</h2>
+          <p>Click on the maps to access our interactive data visualization portals for Geophysical surveying.</p>
+        </div>
+        <div className="interactive-grid">
+          <div className="interactive-item" onClick={() => handleExternalHTML('GeomaresSylt.html')}>
+            <img src="photos/2024-05-13_19-35.png" alt="Survey 1" />
+            <div className="hover-indicator">Interact</div>
+          </div>
+          <div className="interactive-item" onClick={() => handleExternalHTML('vis_path_amp.html')}>
+            <img src="photos/2024-05-13_19-36.png" alt="Survey 2" />
+            <div className="hover-indicator">Interact</div>
+          </div>
+        </div>
+      </div>
+
+      {/* 3. Carousel Projects Section */}
+      {/* Note: Added a margin-top here so it isn't squeezed against the gallery above it */}
+      <div className="container" style={{ marginTop: '120px' }}>
+        <div className="title-text center-title">
+          <p>Our Portfolio</p>
+          <h2>Notable Projects & Core Solutions</h2>
+        </div>
+
+        <div className="carousel-wrapper">
+          <button className="carousel-btn prev" onClick={() => scrollCarousel('prev')}>&#10094;</button>
+          
+          <div className="carousel-track" id="carousel-track">
+            {[
+              { img: 'photos/Screenshot 2024-05-29 124455.png', title: 'EMI Creation', desc: 'Portable electromagnetic induction instrument.' },
+              { img: 'photos/ToneKP_2_1_zoom.png', title: 'Sylt Data Analysis', desc: 'Examination of electromagnetic signals for cable integrity.' },
+              { img: 'photos/2024-05-13_19-33.png', title: 'Geophysical Surveys', desc: 'Understanding geological properties without invasive digging.' },
+              { img: 'photos/welcome-screen.png', title: 'PlanktoSpace App', desc: 'Innovative mobile application for satellite overpass tracking.' }
+            ].map((proj, idx) => (
+              <div className="project-card" key={idx}>
+                <img src={proj.img} alt={proj.title} className="project-img" />
+                <div className="project-content">
+                  <h3>{proj.title}</h3>
+                  <p>{proj.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <button className="carousel-btn next" onClick={() => scrollCarousel('next')}>&#10095;</button>
+        </div>
+      </div>
+      
     </section>
   );
 };
