@@ -273,9 +273,11 @@
   .carousel-btn.next { right: -10px; }
 }
 @media screen and (max-width: 768px) {
+  #projects { padding: 60px 0; }
   .split-section, .split-section.reverse { flex-direction: column; gap: 40px; }
-  .flagship-showcase { padding: 40px 20px; margin-top: 80px; }
-  .flagship-header h2 { font-size: 36px; }
+  .flagship-showcase { padding: 40px 20px; margin-top: 60px; }
+  .flagship-header h2 { font-size: 32px; }
+  .interactive-grid { grid-template-columns: 1fr; }
 }
 @media screen and (max-width: 600px) {
   .project-card { flex: 0 0 100%; }

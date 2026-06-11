@@ -3,6 +3,7 @@ import '../styles/Navbar.css';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -13,10 +14,15 @@ const Navbar = () => {
   // NEW: Safely scroll to sections without triggering a HashRouter page change
   const scrollToSection = (e, sectionId) => {
     e.preventDefault(); // Stop the blank page issue
+    setMenuOpen(false); // Close mobile menu if open
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   return (
@@ -25,7 +31,12 @@ const Navbar = () => {
         <a href="/" onClick={(e) => scrollToSection(e, 'home-page')} className="nav-logo-link">
           <img src="photos/soft_ocean_final.png" alt="SoftOcean Logo" className="nav-logo" />
         </a>
-        <div className="nav-links">
+        
+        <div className="menu-icon" onClick={toggleMenu}>
+          <i className={menuOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"}></i>
+        </div>
+
+        <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
           <a href="/" onClick={(e) => scrollToSection(e, 'home-page')}>Home</a>
           <a href="/" onClick={(e) => scrollToSection(e, 'about')}>Expertise</a>
           <a href="/" onClick={(e) => scrollToSection(e, 'projects')}>Work</a>

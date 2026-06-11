@@ -58,3 +58,15 @@ h1, h2, h3, h4, h5 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+@media screen and (max-width: 768px) {
+  .title-text h2, .title-text h5 {
+    font-size: 32px;
+  }
+  .title-text p {
+    font-size: 14px;
+  }
+  .title-text {
+    margin-bottom: 40px;
+  }
+}

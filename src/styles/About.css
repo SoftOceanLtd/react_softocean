@@ -67,3 +67,9 @@
   background: linear-gradient(transparent, rgba(2, 8, 19, 0.9));
   padding: 30px;
 }
+
+@media screen and (max-width: 768px) {
+  #about {
+    padding: 60px 0;
+  }
+}

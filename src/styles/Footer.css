@@ -75,3 +75,27 @@ footer {
   color: #555;
   font-size: 14px;
 }
+
+@media screen and (max-width: 768px) {
+  .contact-section {
+    padding: 60px 0 40px;
+  }
+  .contact-section h2 {
+    font-size: 28px;
+  }
+  .social-links {
+    gap: 15px;
+  }
+  .social-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+  }
+  .footer-nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .divider {
+    display: none;
+  }
+}

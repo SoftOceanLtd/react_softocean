@@ -20,6 +20,14 @@ const Projects = () => {
   return (
     <section id="projects">
       
+      {/* Section Title */}
+      <div className="container" style={{ marginBottom: '60px' }}>
+        <div className="title-text center-title">
+          <p>Innovation & Impact</p>
+          <h2>Some of Our Biggest Projects</h2>
+        </div>
+      </div>
+
       {/* 1. PlanktoSpace Flagship Showcase */}
       <div id="planktospace-showcase" className="container flagship-showcase">
         <div className="flagship-header">
@@ -56,26 +64,7 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* 2. Interactive Gallery Section */}
-      <div id="project3-gallery" className="container split-section">
-        <div className="split-text">
-          <h2 className="text-gradient">Interactive Surveys</h2>
-          <p>Click on the maps to access our interactive data visualization portals for Geophysical surveying.</p>
-        </div>
-        <div className="interactive-grid">
-          <div className="interactive-item" onClick={() => handleExternalHTML('GeomaresSylt.html')}>
-            <img src="photos/2024-05-13_19-35.png" alt="Survey 1" />
-            <div className="hover-indicator">Interact</div>
-          </div>
-          <div className="interactive-item" onClick={() => handleExternalHTML('vis_path_amp.html')}>
-            <img src="photos/2024-05-13_19-36.png" alt="Survey 2" />
-            <div className="hover-indicator">Interact</div>
-          </div>
-        </div>
-      </div>
-
-      {/* 3. Carousel Projects Section */}
-      {/* Note: Added a margin-top here so it isn't squeezed against the gallery above it */}
+      {/* 2. Carousel Projects Section (Moved Up) */}
       <div className="container" style={{ marginTop: '120px' }}>
         <div className="title-text center-title">
           <p>Our Portfolio</p>
@@ -103,6 +92,24 @@ const Projects = () => {
           </div>
 
           <button className="carousel-btn next" onClick={() => scrollCarousel('next')}>&#10095;</button>
+        </div>
+      </div>
+
+      {/* 3. Interactive Gallery Section (Moved Down) */}
+      <div id="project3-gallery" className="container split-section" style={{ marginTop: '120px' }}>
+        <div className="split-text">
+          <h2 className="text-gradient">Interactive Surveys</h2>
+          <p>Click on the maps to access our interactive data visualization portals for Geophysical surveying.</p>
+        </div>
+        <div className="interactive-grid">
+          <div className="interactive-item" onClick={() => handleExternalHTML('GeomaresSylt.html')}>
+            <img src="photos/2024-05-13_19-35.png" alt="Survey 1" />
+            <div className="hover-indicator">Interact</div>
+          </div>
+          <div className="interactive-item" onClick={() => handleExternalHTML('vis_path_amp.html')}>
+            <img src="photos/2024-05-13_19-36.png" alt="Survey 2" />
+            <div className="hover-indicator">Interact</div>
+          </div>
         </div>
       </div>
       

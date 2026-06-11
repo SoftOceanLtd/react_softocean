@@ -1,56 +1,117 @@
-#portfolio {
+#portfolio.aims-v2-section {
   padding: 100px 0;
-  background-color: #01050a; /* Slightly darker to separate sections */
+  background-color: var(--bg-dark);
+  position: relative;
+  overflow: hidden;
 }
 
-.aims-container {
+.aims-v2-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 50px;
+  gap: 60px;
 }
 
-.aims-content {
+.aims-v2-text {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-.aims-description {
-  font-size: 22px;
-  color: var(--text-muted);
-  line-height: 1.6;
-  border-left: 4px solid var(--primary-cyan);
-  padding-left: 20px;
-}
-
-.aims-image {
-  flex: 1;
+.aims-glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 30px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
   position: relative;
+  overflow: hidden;
+}
+
+.aims-glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 242, 254, 0.1);
+  border-color: rgba(0, 242, 254, 0.3);
+}
+
+.aims-main-card p {
+  font-size: 18px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.aims-quote-card {
+  background: rgba(0, 242, 254, 0.03);
+  border-left: 4px solid var(--primary-cyan);
+}
+
+.quote-icon {
+  font-size: 24px;
+  color: var(--primary-cyan);
+  margin-bottom: 15px;
+  opacity: 0.8;
+}
+
+.aims-quote-card h3 {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.aims-v2-image {
+  flex: 0.9;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
-.glow-effect {
+.aims-image-frame {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  border-radius: 24px;
+  padding: 15px;
+  background: rgba(2, 8, 19, 0.5);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(5px);
+  z-index: 2;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+.aims-image-frame img {
+  width: 100%;
+  border-radius: 15px;
+  display: block;
+}
+
+.aims-cyan-glow {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
-  height: 80%;
-  background: var(--primary-blue);
-  filter: blur(100px);
-  opacity: 0.2;
-  z-index: 0;
+  width: 90%;
+  height: 90%;
+  background: var(--primary-cyan);
+  filter: blur(80px);
+  opacity: 0.15;
+  z-index: -1;
 }
 
-.aims-image img {
-  width: 100%;
-  max-width: 450px;
-  border-radius: 20px;
-  position: relative;
-  z-index: 1;
-  border: 1px solid var(--glass-border);
+@media screen and (max-width: 992px) {
+  .aims-v2-container {
+    flex-direction: column;
+    gap: 50px;
+  }
 }
 
 @media screen and (max-width: 768px) {
-  .aims-container { flex-direction: column; }
+  #portfolio.aims-v2-section {
+    padding: 60px 0;
+  }
 }

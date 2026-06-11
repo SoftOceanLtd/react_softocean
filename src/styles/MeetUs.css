@@ -1,0 +1,150 @@
+#meet-us {
+  padding: 100px 0;
+  background-color: var(--bg-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.meetus-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.meetus-split {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+}
+
+.meetus-content {
+  flex: 1.1;
+}
+
+.meetus-visual {
+  flex: 0.9;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+/* Floating Animation for Image */
+@keyframes floatImage {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+.meetus-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--glass-border);
+  animation: floatImage 6s ease-in-out infinite;
+}
+
+.meetus-image-wrapper img {
+  width: 100%;
+  display: block;
+  transition: transform 0.6s ease;
+  filter: brightness(0.85) contrast(1.1);
+}
+
+.meetus-image-wrapper:hover img {
+  transform: scale(1.05);
+  filter: brightness(1) contrast(1.1);
+}
+
+.meetus-image-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to top, rgba(2, 8, 19, 0.9) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.meetus-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.meetus-card {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  padding: 24px 30px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.meetus-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--primary-cyan), var(--primary-blue));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.meetus-card:hover {
+  transform: translateX(15px);
+  box-shadow: 0 15px 35px rgba(0, 242, 254, 0.15);
+  border-color: rgba(0, 242, 254, 0.4);
+}
+
+.meetus-card:hover::before {
+  opacity: 1;
+}
+
+.meetus-card h3 {
+  font-size: 20px;
+  color: var(--text-main);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.meetus-card h3 i {
+  color: var(--primary-cyan);
+  font-size: 22px;
+  background: rgba(0, 242, 254, 0.1);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.meetus-card p {
+  color: var(--text-muted);
+  font-size: 15.5px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media screen and (max-width: 992px) {
+  .meetus-split {
+    flex-direction: column-reverse;
+    gap: 40px;
+  }
+  
+  .meetus-card:hover {
+    transform: translateY(-5px) translateX(0);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #meet-us {
+    padding: 60px 0;
+  }
+}
