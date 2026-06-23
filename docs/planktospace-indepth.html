@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanktoSpace: Comprehensive User Manual | SoftOcean</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-deep: #000d1a;
+            --navy: #001936;
+            --teal: #2dd4bf;
+            --teal-glow: rgba(45, 212, 191, 0.4);
+            --text-muted: #cbd5e1;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border-light: rgba(255, 255, 255, 0.25);
+            --phone-border: #475569; 
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--navy-deep);
+            color: #ffffff;
+            margin: 0;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+        /* --- Header --- */
+        header {
+            text-align: center;
+            padding: 80px 0 60px 0;
+            border-bottom: 2px solid var(--border-light);
+            margin-bottom: 60px;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            margin: 10px 0;
+            color: #fff;
+        }
+
+        .version-badge {
+            background: var(--teal);
+            color: var(--navy-deep);
+            padding: 5px 18px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            display: inline-block;
+        }
+
+        /* --- Developer Note --- */
+        .dev-note {
+            background: var(--glass);
+            border: 2px solid var(--teal);
+            padding: 35px;
+            border-radius: 20px;
+            margin-bottom: 80px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .dev-note h2 { color: var(--teal); margin-top: 0; font-size: 1.5rem; }
+        .dev-note blockquote {
+            border-left: 4px solid var(--teal);
+            margin: 25px 0 0 0;
+            padding: 10px 0 10px 25px;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #f1f5f9;
+        }
+
+        /* --- Manual Sections --- */
+        .manual-section {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            margin-bottom: 150px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid var(--border-light);
+            align-items: center;
+        }
+
+        /* Responsive Mobile Layout Fix */
+        @media (max-width: 950px) {
+            .manual-section {
+                display: flex;
+                flex-direction: column; /* Stacks text on top, image below */
+                gap: 40px;
+                text-align: center;
+                margin-bottom: 100px;
+            }
+            .text-content ul, .text-content ol {
+                display: inline-block;
+                text-align: left;
+            }
+            .phone-frame {
+                position: relative !important;
+                top: 0 !important;
+                /* Shrink phone slightly on mobile to ensure visibility */
+                width: 280px;
+                height: 568px; /* Maintain aspect ratio (ratio: 0.49) */
+            }
+            .scroll-container img {
+                height: 568px !important; /* Update height for JS math */
+            }
+        }
+
+        .text-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.4rem);
+            color: var(--teal);
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .text-content h3 { color: #fff; font-size: 1.2rem; margin-top: 25px; }
+        .text-content p, .text-content li { color: var(--text-muted); font-size: 1.05rem; }
+        .text-content strong { color: #fff; }
+
+        /* --- Virtual Phone Frame --- */
+        .phone-frame {
+            position: sticky;
+            top: 50px;
+            width: 325px;
+            height: 660px;
+            margin: 0 auto;
+            background: #000;
+            border: 12px solid var(--phone-border);
+            border-radius: 40px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.1);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .phone-screen { 
+            width: 100%; 
+            height: 100%; 
+            position: relative; 
+            background: #fff;
+            overflow: hidden;
+        }
+
+        /* Scrolling Logic */
+        .scroll-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .scroll-container img {
+            width: 100%;
+            height: 660px; 
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        /* Fading Logic */
+        .fade-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .fade-img.hidden { opacity: 0; pointer-events: none; }
+        .fade-img.active { opacity: 1; }
+
+        .pro-tip {
+            background: rgba(45, 212, 191, 0.12);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+            border: 1px solid var(--teal);
+            border-left: 6px solid var(--teal);
+        }
+
+        .indicator { height: 12px; width: 12px; border-radius: 50%; display: inline-block; margin-right: 8px; }
+        .green { background: #4ade80; }
+        .amber { background: #fbbf24; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <span class="version-badge">VERSION 1.0</span>
+        <h1>PlanktoSpace:<br>Comprehensive User Manual</h1>
+        <p style="color: var(--text-muted); margin-top: 15px;">Last Updated: February 2026</p>
+        <p style="max-width: 750px; margin: 20px auto 0 auto;">Welcome to PlanktoSpace. This application is designed to be your primary decision-support tool for satellite-synchronized marine sampling.</p>
+    </header>
+
+    <section class="dev-note">
+        <h2>📢 A Note from the Developers</h2>
+        <p>We build this tool specifically for the scientific community. To help us support you better, we have one small request:</p>
+        <blockquote>
+            <strong>Please send us a "Hello!"</strong><br>
+            When you first install the app, go to the <strong>Feedback & Support</strong> screen and send a short message with your <strong>Name</strong> and <strong>Institution</strong>. This helps us identify your anonymous Device ID in our system, allowing us to prioritize your feature requests and support tickets.
+        </blockquote>
+    </section>
+
+    <!-- 1. The Home Screen -->
+    <div class="manual-section">
+        <div class="text-content">
+            <h2>1. The Home Screen</h2>
+            <p>This is your command center.</p>
+            <ul>
+                <li><strong>Proceed to Map:</strong> Opens the main operational view.</li>
+                <li><strong>View Saved Passes:</strong> Access your offline library of selected opportunities.</li>
+                <li><strong>Feedback & Support:</strong> A direct chat line to the development team.
+                    <br><em>Note:</em> If you see a <strong>Red Dot</strong> on this button, it means the developers have replied to your previous message.
+                </li>
+                <li><strong>Help & About:</strong> Access user guides, legal terms, and system versioning.</li>
+            </ul>
+        </div>
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <img src="photos/home.jpg" class="fade-img active" alt="Home Screen">
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. The Map & Layer Control -->
+    <div class="manual-section">
+        <div class="text-content">
+            <h2>2. The Map & Layer Control</h2>
+            <p>The map is where every search begins. You can navigate using standard pinch-to-zoom gestures.</p>
+            <h3>Map Controls (Top Right)</h3>
+            <ul>
+                <li><strong>Layers (Stack Icon):</strong> Opens the Map Layers menu.
+                    <ul>
+                        <li><em>Satellite:</em> Esri World Imagery (best for land references).</li>
+                        <li><em>Ocean:</em> Esri Ocean Basemap (shows bathymetry contours).</li>
+                        <li><em>OpenSeaMap:</em> Toggles nautical navigation aids (buoys, lights).</li>
+                        <li><em>No Map:</em> Select this to save data bandwidth at sea.</li>
+                    </ul>
+                </li>
+                <li><strong>Refine Search (Edit Icon):</strong> Opens the detailed search settings (see Section 3).</li>
+                <li><strong>My Location (Target Icon):</strong> Snaps the crosshair to your vessel's current GPS position.</li>
+            </ul>
+            <h3>Selecting a Target</h3>
+            <p>Tap anywhere on the map to drop a <strong>Blue Pin</strong>. This is your "Sampling Station." The bottom sheet will popup showing the exact coordinates selected.</p>
+        </div>
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <img src="photos/map.jpg" class="fade-img active" alt="Map View">
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Configuring Your Search -->
+    <div class="manual-section">
+        <div class="text-content">
+            <h2>3. Configuring Your Search</h2>
+            <p>Before checking for satellites, you can customize the engine to suit your mission profile. Tap <strong>"Refine Search"</strong> (or the Edit icon) to open this menu.</p>
+            <ul>
+                <li><strong>Coordinates:</strong> You can manually type decimal latitude/longitude here if you have a specific station target.</li>
+                <li><strong>Search Duration:</strong> How many days into the future to look (Default: 2 days).</li>
+                <li><strong>Time of Day:</strong> Filter passes to your working hours (e.g., 08:00 to 18:00).
+                    <br><em>Note:</em> These hours are based on <strong>Your Device's Local Time</strong>, adjusted for the target location.
+                </li>
+                <li><strong>Range of Interest:</strong> Filters passes based on how close the satellite passes to your zenith (overhead).</li>
+            </ul>
+            <div class="pro-tip">
+                <strong>🚀 Pro Tip: Faster Searching</strong><br>
+                <strong>"Include Chlorophyll Data" Switch:</strong><br>
+                • <strong>ON (Default):</strong> The server queries NOAA archives for historical chlorophyll data. This takes <strong>~15-20 seconds</strong>.<br>
+                • <strong>OFF:</strong> The server skips the oceanographic data and only calculates geometry and weather. This returns results in <strong>~2 seconds</strong>. Use this for quick geometric checks.
+            </div>
+        </div>
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <img src="photos/refine.jpg" class="fade-img active" alt="Refine Settings">
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Understanding Search Results -->
+    <div class="manual-section">
+        <div class="text-content">
+            <h2>4. Understanding Search Results</h2>
+            <p>Once you tap <strong>"Check Satellites"</strong>, the results list appears.</p>
+            <h3>The Confidence Indicators (The Dots)</h3>
+            <p>We use a <strong>Hybrid Prediction Engine</strong> that cross-references multiple sources.</p>
+            <ul>
+                <li><span class="indicator green"></span> <strong>Green Dot (High Confidence):</strong> Calculated via TLE data <strong>AND</strong> N2YO API.</li>
+                <li><span class="indicator amber"></span> <strong>Amber Dot (Standard Confidence):</strong> Found by only one source. Common for newer satellites like Sentinel-2C.</li>
+            </ul>
+            <h3>The Opportunity Score</h3>
+            <p>Every pass is graded <strong>0 to 100</strong>.</p>
+            <ul>
+                <li><strong>100:</strong> Perfect (Overhead, 0% Clouds, Low Wind).</li>
+                <li><strong>0:</strong> Unusable (Horizon pass, 100% Clouds).</li>
+            </ul>
+        </div>
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <img src="photos/satellites.jpg" class="fade-img active" alt="Satellite Results">
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Pass Details & Validation (Scrolls) -->
+    <div class="manual-section">
+        <div class="text-content">
+            <h2>5. Pass Details & External Validation</h2>
+            <p>Tap any item in the list to open the Detail View.</p>
+            <ul>
+                <li><strong>Timing:</strong> Shows Start, Max Elevation, and End times in <strong>UTC</strong> and <strong>Local Time</strong>.</li>
+                <li><strong>Weather Context:</strong> Cloud Sources (Open-Meteo, MET Norway, OpenWeatherMap) and Marine data (Wave/Wind).</li>
+                <li><strong>External Links:</strong> Opens <strong>Windy.com</strong> for meteograms or <strong>NASA Worldview</strong> for visual sensor imagery.</li>
+            </ul>
+        </div>
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <div id="details-scroller" class="scroll-container">
+                    <img src="photos/detail1.jpg" alt="Step 1">
+                    <img src="photos/detail2.jpg" alt="Step 2">
+                    <img src="photos/detail3.jpg" alt="Step 3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. Saving & Exporting (Fades) -->
+    <div class="manual-section">
+        <div class="text-content">
+            <h2>6. Saving & Exporting Data (JSON)</h2>
+            <p>Build a library of opportunities for offline use.</p>
+            <ol>
+                <li><strong>Save:</strong> Tap the <strong>Star Icon</strong> in the list or detail view.</li>
+                <li><strong>View:</strong> Go to <strong>"Saved Opportunities"</strong> from Home.</li>
+            </ol>
+            <h3>How to Export Data</h3>
+            <ol>
+                <li>Tap <strong>"Select / Manage"</strong> in the top right.</li>
+                <li>Select the passes you want to export.</li>
+                <li>Tap <strong>"Copy JSON"</strong> at the bottom of the screen.</li>
+                <li><strong>Paste</strong> into Email, WhatsApp, or Notes.</li>
+            </ol>
+        </div>
+        <div class="phone-frame">
+            <div class="phone-screen" id="save-gallery">
+                <img src="photos/save1.jpg" class="fade-img active" alt="Save 1">
+                <img src="photos/save2.jpg" class="fade-img hidden" alt="Save 2">
+                <img src="photos/save3.jpg" class="fade-img hidden" alt="Save 3">
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. Troubleshooting (Scrolls) -->
+    <div class="manual-section">
+        <div class="text-content">
+            <h2>7. Troubleshooting & System Info</h2>
+            <h3>Updates & Versioning</h3>
+            <p>Go to <strong>"Help & About"</strong> to find your version numbers.</p>
+            <ul>
+                <li><strong>App Version:</strong> Interface version (e.g., 1.1.2).</li>
+                <li><strong>Server Version:</strong> Cloud calculation engine (e.g., 0.3.1).</li>
+            </ul>
+            <h3>Legal & Privacy</h3>
+            <p>Access full Terms by tapping the link in the Help screen. This opens documentation on <code>softocean.net</code>.</p>
+        </div>
+        <div class="phone-frame">
+            <div class="phone-screen">
+                <div id="help-scroller" class="scroll-container">
+                    <img src="photos/help1.jpg" alt="Help 1">
+                    <img src="photos/help2.jpg" alt="Help 2">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Logic for Scrolling down frames
+    function startScrollGallery(id, interval = 4000) {
+        const scroller = document.getElementById(id);
+        const images = scroller.querySelectorAll('img');
+        let current = 0;
+
+        setInterval(() => {
+            current = (current + 1) % images.length;
+            const h = scroller.parentElement.offsetHeight; // Get current phone screen height
+            scroller.style.transform = `translateY(-${current * h}px)`;
+        }, interval);
+    }
+
+    // Logic for Fading frames
+    function startFadeGallery(id, interval = 3500) {
+        const container = document.getElementById(id);
+        const images = container.querySelectorAll('.fade-img');
+        let current = 0;
+
+        setInterval(() => {
+            images[current].classList.remove('active');
+            images[current].classList.add('hidden');
+            current = (current + 1) % images.length;
+            images[current].classList.remove('hidden');
+            images[current].classList.add('active');
+        }, interval);
+    }
+
+    window.onload = () => {
+        startScrollGallery('details-scroller', 4000);
+        startFadeGallery('save-gallery', 3500);
+        startScrollGallery('help-scroller', 5000);
+    };
+</script>
+
+</body>
+</html>
